@@ -17,7 +17,7 @@ defmodule ElixirJobBoard.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/posts", PostsController, :index
+    resources "/posts", PostsController
   end
 
   # Other scopes may use custom stacks.
