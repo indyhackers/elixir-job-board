@@ -7,6 +7,10 @@ defmodule ElixirJobBoard.PostsController do
     render conn, "index.html"
   end
 
+  def show(conn, %{"id" => id}) do
+    render conn, "show.html", id: id
+  end
+
   def new(conn, _params) do
     changeset = Job.changeset(%Job{})
     render(conn, "new.html", changeset: changeset)
