@@ -4,11 +4,13 @@ defmodule ElixirJobBoard.PostsController do
   alias ElixirJobBoard.Job
 
   def index(conn, _params) do
-    render conn, "index.html"
+    jobs = Repo.all(ElixirJobBoard.Job)
+    render conn, "index.html", jobs: jobs
   end
 
   def show(conn, %{"id" => id}) do
-    render conn, "show.html", id: id
+    post = Repo.get(ElixirJobBoard.Job, id)
+    render conn, "show.html", post: post
   end
 
   def new(conn, _params) do
