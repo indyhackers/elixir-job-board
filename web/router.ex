@@ -18,6 +18,7 @@ defmodule ElixirJobBoard.Router do
 
     get "/", PageController, :index
     get "/posts", PostsController, :index
+    get "/posts/:id", PostsController, :show
   end
 
   # Other scopes may use custom stacks.
