@@ -2,10 +2,12 @@ defmodule ElixirJobBoard.PostsController do
   use ElixirJobBoard.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    jobs = Repo.all(ElixirJobBoard.Job)
+    render conn, "index.html", jobs: jobs
   end
 
   def show(conn, %{"id" => id}) do
-    render conn, "show.html", id: id
+    post = Repo.get(ElixirJobBoard.Job, id)
+    render conn, "show.html", post: post
   end
 end
