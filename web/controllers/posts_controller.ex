@@ -1,5 +1,6 @@
 defmodule ElixirJobBoard.PostsController do
   use ElixirJobBoard.Web, :controller
+  require IEx
 
   alias ElixirJobBoard.Job
 
@@ -27,7 +28,7 @@ defmodule ElixirJobBoard.PostsController do
         |> put_flash(:info, "Job created successfully.")
         |> redirect(to: posts_path(conn, :index))
       {:error, changeset} ->
-        render("new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
@@ -47,7 +48,7 @@ defmodule ElixirJobBoard.PostsController do
         |> put_flash(:info, "Job successfully updated.")
         |> redirect(to: posts_path(conn, :show, id))
       {:error, changeset} ->
-        render("edit.html", id: id, changeset: changeset)
+        render(conn, "edit.html", id: id, changeset: changeset, job: job)
     end
   end
 end
