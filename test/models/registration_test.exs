@@ -9,13 +9,15 @@ defmodule ElixirJobBoard.RegistrationTest do
 
   test "creates a user when given valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
-    result = Registration.create(changeset, ElixirJobBoard.Repo)
-    assert elem(result, 0) == :ok
+    assert ElixirJobBoard.Repo.get_by(User, email: "some_content@some_content.com") == nil
+    Registration.create(changeset, ElixirJobBoard.Repo)
+    refute ElixirJobBoard.Repo.get_by(User, email: "some_content@some_content.com") == nil
   end
 
   test "changeset with invalid attributes" do
     changeset = User.changeset(%User{}, @invalid_attrs)
-    result = Registration.create(changeset, ElixirJobBoard.Repo)
-    refute elem(result, 0) == :ok
+    assert ElixirJobBoard.Repo.get_by(User, email: "some_content@some_content.com") == nil
+    Registration.create(changeset, ElixirJobBoard.Repo)
+    assert ElixirJobBoard.Repo.get_by(User, email: "some_content@some_content.com") == nil
   end
 end
