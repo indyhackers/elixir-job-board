@@ -52,6 +52,7 @@ defmodule ElixirJobBoard.Web do
       import ElixirJobBoard.Router.Helpers
       import ElixirJobBoard.ErrorHelpers
       import ElixirJobBoard.Gettext
+      import ElixirJobBoard.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 
