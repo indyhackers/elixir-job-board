@@ -1,5 +1,6 @@
 defmodule ElixirJobBoard.Session do
   alias ElixirJobBoard.User
+  require IEx
 
   def login(params, repo) do
     user = repo.get_by(User, email: String.downcase(params["email"]))
