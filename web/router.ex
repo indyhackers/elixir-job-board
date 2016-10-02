@@ -25,6 +25,12 @@ defmodule ElixirJobBoard.Router do
     resources "/posts", PostsController
   end
 
+  scope "/admin", ElixirJobBoard do
+    pipe_through [:browser, ElixirJobBoard.Plugs.AuthenticateAdmin]
+
+    resources "/jobs", Admin.JobController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", ElixirJobBoard do
   #   pipe_through :api
