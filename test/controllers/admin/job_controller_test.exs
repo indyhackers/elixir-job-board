@@ -5,8 +5,30 @@ defmodule ElixirJobBoard.JobControllerTest do
   import ElixirJobBoard.Factory
 
   setup do
-    user = ElixirJobBoard.Factory.insert(:user, %{ admin: true })
+    user = insert(:user, %{ admin: true })
     { :ok, user: Repo.get(User, user.id) }
+  end
+
+  test "all actions require user to be a admin" do
+    user = insert(:user)
+    job = insert(:job)
+    conn = build_conn()
+            |> assign(:current_user, user)
+    {:ok, conn: conn, user: user}
+    refute User.is_admin?(user)
+
+    Enum.each([
+      get(conn, job_path(conn, :new)),
+      get(conn, job_path(conn, :index)),
+      get(conn, job_path(conn, :show, job)),
+      get(conn, job_path(conn, :edit, job)),
+      post(conn, job_path(conn, :create, %{})),
+      put(conn, job_path(conn, :update, job, %{})),
+      delete(conn, job_path(conn, :delete, job))
+      ], fn conn ->
+        assert html_response(conn, 302)
+        assert conn.halted
+    end)
   end
 
   test "GET /jobs", %{user: user} do

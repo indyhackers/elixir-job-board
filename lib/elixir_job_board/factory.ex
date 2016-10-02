@@ -12,7 +12,7 @@ defmodule ElixirJobBoard.Factory do
 
   def user_factory do
     %ElixirJobBoard.User{
-      email: "some_content@some_content.com",
+      email: sequence(:email, &"email-#{&1}@example.com"),
       # User password is password the value for the key crypted_paswword
       # is the hashed value for password
       crypted_password: "$2b$12$PryIurhZCfAgTXW0Rqz0oOAxJ00WV6OU30cvWsoyGefFNhmDnq6K2",
