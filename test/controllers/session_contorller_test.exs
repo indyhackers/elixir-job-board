@@ -4,7 +4,6 @@ defmodule ElixirJobBoard.SessionControllerTest do
   alias ElixirJobBoard.Session
   require IEx
 
-
   test "GET /login", %{conn: conn} do
     conn = get conn, "/login"
     assert html_response(conn, 200)
@@ -31,21 +30,10 @@ defmodule ElixirJobBoard.SessionControllerTest do
 
   test "DELETE /logout", %{conn: conn} do
     user = insert(:user)
-    session_params = %{"email" => user.email,
-                       "password" => "password"}
-    conn = post conn, "/login", %{"session" => session_params}
-    assert Session.current_user(conn) == user
-    assert Session.logged_in?(conn)
     conn = delete conn, "/logout"
     assert get_flash(conn, :info) == "Logged out"
     assert redirected_to(conn) =~ "/"
     refute Session.current_user(conn) == user
     refute Session.logged_in?(conn)
-  end
-
-  defp log_user_in(user, %{conn: conn}) do
-    session_params = %{"email" => user.email,
-                       "password" => "password"}
-    conn = post conn, "/login", %{"session" => session_params}
   end
 end
