@@ -1,4 +1,3 @@
-require IEx
 defmodule ElixirJobBoard.Plugs.AuthenticateAdmin do
   import Plug.Conn
   import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
@@ -10,7 +9,6 @@ defmodule ElixirJobBoard.Plugs.AuthenticateAdmin do
 
   def call(conn, _opts) do
     user = get_user(conn)
-    IEx.pry
     if user && User.is_admin?(user) do
       conn |> assign(:current_user, user)
     else
