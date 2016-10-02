@@ -4,8 +4,6 @@ defmodule ElixirJobBoard.Admin.JobController do
 
   alias ElixirJobBoard.Job
 
-  plug ElixirJobBoard.Plugs.AuthenticateAdmin
-
   def index(conn, _params) do
     jobs = Repo.all(Job)
     render conn, "index.html", jobs: jobs

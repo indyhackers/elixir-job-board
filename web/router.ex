@@ -26,7 +26,7 @@ defmodule ElixirJobBoard.Router do
   end
 
   scope "/admin", ElixirJobBoard do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, ElixirJobBoard.Plugs.AuthenticateAdmin]
 
     resources "/jobs", Admin.JobController
   end
