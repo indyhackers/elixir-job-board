@@ -5,6 +5,7 @@ defmodule ElixirJobBoard.User do
     field :email, :string
     field :crypted_password, :string
     field :password, :string, virtual: true
+    field :admin, :boolean
     timestamps()
   end
 
@@ -19,4 +20,7 @@ defmodule ElixirJobBoard.User do
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 5)
   end
+
+  def is_admin?(%ElixirJobBoard.User{ admin: true }), do: true
+  def is_admin?(_), do: false
 end

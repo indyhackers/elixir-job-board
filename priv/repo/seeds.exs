@@ -17,17 +17,26 @@ default_password = "password"
 
 pg_changeset = ElixirJobBoard.User.changeset(
   %ElixirJobBoard.User{},
-  %{ "email" => "pg13@pacers.com", "password" => default_password}
+  %{
+    "email" => "pg13@pacers.com",
+    "password" => default_password,
+  }
 )
 myles_changeset = ElixirJobBoard.User.changeset(
   %ElixirJobBoard.User{},
-  %{ "email" => "myles@pacers.com", "password" => default_password }
+  %{
+    "email" => "myles@pacers.com",
+    "password" => default_password
+  }
 )
 zeisloft_changeset = ElixirJobBoard.User.changeset(
   %ElixirJobBoard.User{},
-  %{ "email" => "nick.zeisloft.iu@pacers.com", "password" => default_password }
+  %{
+    "email" => "nick.zeisloft.iu@pacers.com",
+    "password" => default_password
+  }
 )
 
-ElixirJobBoard.Registration.create(pg_changeset, ElixirJobBoard.Repo)
+ElixirJobBoard.Registration.create(Ecto.Changeset.change(pg_changeset, admin: true), ElixirJobBoard.Repo)
 ElixirJobBoard.Registration.create(myles_changeset, ElixirJobBoard.Repo)
 ElixirJobBoard.Registration.create(zeisloft_changeset, ElixirJobBoard.Repo)
