@@ -51,4 +51,16 @@ defmodule ElixirJobBoard.Admin.JobController do
         render(conn, "edit.html", id: id, changeset: changeset, job: job)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    job = Repo.get(Job, id)
+    case Repo.delete(job) do
+      {:ok, _job} ->
+        conn
+        |> put_flash(:info, "Job successfully deleted.")
+        |> redirect(to: job_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "show.html", id: id, job: job)
+    end
+  end
 end

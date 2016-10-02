@@ -5,6 +5,7 @@
     <tr>
       <td><%= Phoenix.HTML.Link.link("#{job.title}", to: "/admin/jobs/#{job.id}") %></td>
       <td><%= Phoenix.HTML.Link.link("Edit", to: "/admin/jobs/#{job.id}/edit") %></td>
+      <td><%= Phoenix.HTML.Link.link("Delete", to: "/admin/jobs/#{job.id}", method: :delete) %></td>
     </tr>
   <%= end %>
 </div>
