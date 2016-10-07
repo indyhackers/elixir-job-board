@@ -1,6 +1,8 @@
 defmodule ElixirJobBoard.PostsController do
   use ElixirJobBoard.Web, :controller
-  require IEx
+
+  plug ElixirJobBoard.Plugs.LoginWithToken
+  plug ElixirJobBoard.Plugs.AuthenticateJobPoster
 
   alias ElixirJobBoard.Job
 

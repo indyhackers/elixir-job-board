@@ -4,6 +4,18 @@ defmodule ElixirJobBoard.PostsControllerTest do
   import ElixirJobBoard.Factory
   require IEx
 
+  setup do
+    user = insert(:user)
+    conn
+      |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
+      |> Plug.Session.call(@session)
+      |> put_session(:current_user, user.id)
+      |> fetch_session
+      |> fetch_flash
+
+    {:ok, conn: conn}
+  end
+
   test "GET /posts", %{conn: conn} do
     conn = get conn, "/posts"
     assert html_response(conn, 200)
