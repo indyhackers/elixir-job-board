@@ -19,7 +19,6 @@ defmodule ElixirJobBoard.Plugs.LoginWithToken do
 
   defp get_user_from_token(conn) do
     conn = conn |> fetch_query_params()
-    IO.inspect(conn)
     find_user_by_token(conn.query_params["token"])
   end
 
