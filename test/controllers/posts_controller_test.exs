@@ -38,13 +38,21 @@ defmodule ElixirJobBoard.PostsControllerTest do
     assert html_response(conn, 200)
   end
 
-  test "GET /posts/:id/edit", %{conn: conn} do
+  test "GET /posts/:id/edit with a valid user", %{conn: conn} do
     job = insert(:job)
     user = insert(:user)
     conn = conn
             |> assign(:current_user, user)
             |> get("/posts/#{job.id}/edit")
     assert html_response(conn, 200)
+  end
+
+  test "GET /posts/:id/edit without a valid user", %{conn: conn} do
+    job = insert(:job)
+    conn = conn
+            |> get("/posts/#{job.id}/edit")
+    assert get_flash(conn, :info) =~ "logged in"
+    assert redirected_to(conn) =~ "/"
   end
 
   test "successful POST /posts", %{conn: conn} do
@@ -76,7 +84,7 @@ defmodule ElixirJobBoard.PostsControllerTest do
     assert_in_delta(jobs_count, length(Repo.all(Job)), 1)
   end
 
-  test "successful PATCH /posts/:id", %{conn: conn} do
+  test "successful PATCH /posts/:id with a valid user", %{conn: conn} do
     user = insert(:user)
     job = insert(:job)
     job_params = %{"title" => "Something Important"}
@@ -87,7 +95,7 @@ defmodule ElixirJobBoard.PostsControllerTest do
     assert redirected_to(conn) =~ "/posts/#{job.id}"
   end
 
-  test "unsuccessful PATCH /posts/:id", %{conn: conn} do
+  test "unsuccessful PATCH /posts/:id with a valid user", %{conn: conn} do
     user = insert(:user)
     job = insert(:job)
     job_params = %{"title" => nil}
