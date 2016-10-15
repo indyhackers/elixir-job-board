@@ -1,7 +1,7 @@
 defmodule ElixirJobBoard.Job do
   use ElixirJobBoard.Web, :model
 
-  schema "job" do
+  schema "jobs" do
     field :title, :string
     field :description, :string
     field :poster_email, :string
