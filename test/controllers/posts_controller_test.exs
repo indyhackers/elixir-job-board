@@ -39,8 +39,8 @@ defmodule ElixirJobBoard.PostsControllerTest do
   end
 
   test "GET /posts/:id/edit with a valid user", %{conn: conn} do
-    job = insert(:job)
     user = insert(:user)
+    job = insert(:job, user_id: user.id)
     conn = conn
             |> assign(:current_user, user)
             |> get("/posts/#{job.id}/edit")
@@ -86,7 +86,7 @@ defmodule ElixirJobBoard.PostsControllerTest do
 
   test "successful PATCH /posts/:id with a valid user", %{conn: conn} do
     user = insert(:user)
-    job = insert(:job)
+    job = insert(:job, user_id: user.id)
     job_params = %{"title" => "Something Important"}
     conn = conn
             |> assign(:current_user, user)
@@ -97,7 +97,7 @@ defmodule ElixirJobBoard.PostsControllerTest do
 
   test "unsuccessful PATCH /posts/:id with a valid user", %{conn: conn} do
     user = insert(:user)
-    job = insert(:job)
+    job = insert(:job, user_id: user.id)
     job_params = %{"title" => nil}
     conn = conn
             |> assign(:current_user, user)
