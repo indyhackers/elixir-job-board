@@ -1,4 +1,4 @@
-defmodule ElixirJobBoard.JobControllerTest do
+defmodule ElixirJobBoard.JobsControllerTest do
   use ElixirJobBoard.ConnCase
   alias ElixirJobBoard.Job
   alias ElixirJobBoard.User
@@ -18,13 +18,13 @@ defmodule ElixirJobBoard.JobControllerTest do
     refute User.is_admin?(user)
 
     Enum.each([
-      get(conn, job_path(conn, :new)),
-      get(conn, job_path(conn, :index)),
-      get(conn, job_path(conn, :show, job)),
-      get(conn, job_path(conn, :edit, job)),
-      post(conn, job_path(conn, :create, %{})),
-      put(conn, job_path(conn, :update, job, %{})),
-      delete(conn, job_path(conn, :delete, job))
+      get(conn, jobs_path(conn, :new)),
+      get(conn, jobs_path(conn, :index)),
+      get(conn, jobs_path(conn, :show, job)),
+      get(conn, jobs_path(conn, :edit, job)),
+      post(conn, jobs_path(conn, :create, %{})),
+      put(conn, jobs_path(conn, :update, job, %{})),
+      delete(conn, jobs_path(conn, :delete, job))
       ], fn conn ->
         assert html_response(conn, 302)
         assert conn.halted

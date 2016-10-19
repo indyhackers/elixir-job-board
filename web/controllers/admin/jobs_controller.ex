@@ -1,4 +1,4 @@
-defmodule ElixirJobBoard.Admin.JobController do
+defmodule ElixirJobBoard.Admin.JobsController do
   use ElixirJobBoard.Web, :controller
   require IEx
 
@@ -26,7 +26,7 @@ defmodule ElixirJobBoard.Admin.JobController do
       {:ok, _job} ->
         conn
         |> put_flash(:info, "Job created successfully.")
-        |> redirect(to: job_path(conn, :index))
+        |> redirect(to: jobs_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -46,7 +46,7 @@ defmodule ElixirJobBoard.Admin.JobController do
       {:ok, _job} ->
         conn
         |> put_flash(:info, "Job successfully updated.")
-        |> redirect(to: job_path(conn, :show, id))
+        |> redirect(to: jobs_path(conn, :show, id))
       {:error, changeset} ->
         render(conn, "edit.html", id: id, changeset: changeset, job: job)
     end
@@ -58,8 +58,8 @@ defmodule ElixirJobBoard.Admin.JobController do
       {:ok, _job} ->
         conn
         |> put_flash(:info, "Job successfully deleted.")
-        |> redirect(to: job_path(conn, :index))
-      {:error, changeset} ->
+        |> redirect(to: jobs_path(conn, :index))
+      {:error, _changeset} ->
         render(conn, "show.html", id: id, job: job)
     end
   end
