@@ -7,28 +7,27 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello ElixirJobBoard!</title>
+    <title>Indy Hackers Job Board</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
-      <header class="header">
+      <header class="header clearfix">
         <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
+          <ul class="nav nav-pills float-xs-right">
             <%= if logged_in?(@conn) do %>
-              <li><%= current_user(@conn).email %></li>
-              <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
+              <li class="nav-item"><span class="nav-link"><%= current_user(@conn).email %></span></li>
+              <li class="nav-item"><%= link "Logout", to: session_path(@conn, :delete), method: :delete, class: "nav-link" %></li>
             <% else %>
-              <li><%= link "Login", to: "/login" %></li>
+              <li class="nav-item"><%= link "Login", to: "/login", class: "nav-link" %></li>
             <% end %>
           </ul>
         </nav>
         <span class="logo"></span>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= show_flash(@conn) %>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>

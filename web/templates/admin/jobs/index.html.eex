@@ -1,12 +1,10 @@
-<div class="jumbotron">
-  <h2>Job Posts</h2>
-  <%= link "New Job", to: jobs_path(@conn, :new) %>
-  <table class="table table-striped">
-  <%= for job <- @jobs do %>
-    <tr>
-      <td><%= link job.title, to: jobs_path(@conn, :show, job) %></td>
-      <td><%= link "Edit", to: jobs_path(@conn, :edit, job) %></td>
-      <td><%= link "Delete", to: jobs_path(@conn, :delete, job.id), method: :delete %></td>
-    </tr>
-  <%= end %>
-</div>
+<h2>Job Posts</h2>
+<%= link "New Job", to: jobs_path(@conn, :new) %>
+<table class="table table-striped">
+<%= for job <- @jobs do %>
+  <tr>
+    <td><%= link job.title, to: jobs_path(@conn, :show, job) %></td>
+    <td><%= link "Edit", to: jobs_path(@conn, :edit, job) %></td>
+    <td><%= link "Delete", to: jobs_path(@conn, :delete, job.id), method: :delete %></td>
+  </tr>
+<%= end %>
