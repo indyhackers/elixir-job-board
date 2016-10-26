@@ -1,5 +1,5 @@
 # ElixirJobBoard
-
+[![Build Status](https://travis-ci.org/indyhackers/elixir-job-board.svg?branch=master)](https://travis-ci.org/indyhackers/elixir-job-board)
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
