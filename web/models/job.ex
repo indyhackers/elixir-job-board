@@ -8,6 +8,7 @@ defmodule ElixirJobBoard.Job do
     field :contact_email, :string
     field :location, :string
     field :published_at, Ecto.DateTime
+    belongs_to :user, ElixirJobBoard.User
 
     timestamps()
   end

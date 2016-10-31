@@ -1,6 +1,9 @@
 defmodule ElixirJobBoard.PostsController do
   use ElixirJobBoard.Web, :controller
-  require IEx
+
+  plug ElixirJobBoard.Plugs.LoginWithToken when action in [:edit, :update, :destroy]
+  plug ElixirJobBoard.Plugs.AuthenticateJobPoster when action in [:edit, :update, :destroy]
+  plug ElixirJobBoard.Plugs.AuthorizeJobPoster when action in [:edit, :update, :destroy]
 
   alias ElixirJobBoard.Job
 

@@ -6,6 +6,7 @@ defmodule ElixirJobBoard.User do
     field :crypted_password, :string
     field :password, :string, virtual: true
     field :admin, :boolean
+    field :token, :string
     timestamps()
   end
 
