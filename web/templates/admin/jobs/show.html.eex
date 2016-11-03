@@ -1,3 +1,26 @@
+<%= link "Back", to: jobs_path(@conn, :index) %> |
+<%= link "Edit", to: jobs_path(@conn, :edit, @job) %>
 <div class="jumbotron">
   <h2>Title: <%= @job.title %></h2>
+  <p>
+    <%= @job.description %>
+  </p>
+  <p>
+    Location:
+    <%= @job.location %>
+  </p>
+  <p>
+    Poster email:
+    <%= link @job.poster_email, to: "mailto:#{@job.poster_email}" %>
+  </p>
+  <p>
+    Contact email:
+    <%= link @job.contact_email, to: "mailto:#{@job.contact_email}" %>
+  </p>
+  <%= if @job.published_at do %>
+    <p>
+      Published:
+      <%= @job.published_at %>
+    </p>
+  <% end %>
 </div>
