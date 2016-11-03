@@ -1,0 +1,9 @@
+/* This file is for your main application css. */
+/* use fonts from priv/static/fonts/ */
+
+$icon-font-path: "/fonts/";
+
+@import "bootstrap";
+
+/* Custom Stuff */
+@import "custom";
