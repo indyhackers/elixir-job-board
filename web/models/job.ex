@@ -19,6 +19,6 @@ defmodule ElixirJobBoard.Job do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :description, :poster_email, :contact_email, :location, :published_at])
-    |> validate_required([:title, :description, :poster_email, :contact_email, :location, :published_at])
+    |> validate_required([:title, :description, :poster_email, :contact_email, :location])
   end
 end
