@@ -1,4 +1,4 @@
-defmodule ElixirJobBoard.PostsController do
+defmodule ElixirJobBoard.JobsController do
   use ElixirJobBoard.Web, :controller
 
   plug ElixirJobBoard.Plugs.LoginWithToken when action in [:edit, :update, :destroy]
@@ -13,8 +13,8 @@ defmodule ElixirJobBoard.PostsController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Repo.get(Job, id)
-    render conn, "show.html", post: post
+    job = Repo.get(Job, id)
+    render conn, "show.html", job: job
   end
 
   def new(conn, _params) do
@@ -29,7 +29,7 @@ defmodule ElixirJobBoard.PostsController do
       {:ok, _job} ->
         conn
         |> put_flash(:info, "Job created successfully.")
-        |> redirect(to: posts_path(conn, :index))
+        |> redirect(to: jobs_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -49,7 +49,7 @@ defmodule ElixirJobBoard.PostsController do
       {:ok, _job} ->
         conn
         |> put_flash(:info, "Job successfully updated.")
-        |> redirect(to: posts_path(conn, :show, id))
+        |> redirect(to: jobs_path(conn, :show, id))
       {:error, changeset} ->
         render(conn, "edit.html", id: id, changeset: changeset, job: job)
     end

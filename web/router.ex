@@ -22,10 +22,10 @@ defmodule ElixirJobBoard.Router do
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
 
-    resources "/posts", PostsController
+    resources "/jobs", JobsController
   end
 
-  scope "/admin", ElixirJobBoard do
+  scope "/admin", ElixirJobBoard, as: :admin do
     pipe_through [:browser, ElixirJobBoard.Plugs.AuthenticateAdmin]
 
     resources "/jobs", Admin.JobsController
