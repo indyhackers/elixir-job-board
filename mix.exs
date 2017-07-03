@@ -40,7 +40,8 @@ defmodule ElixirJobBoard.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ex_machina, "~> 1.0.2"},
      {:comeonin, "~> 2.5"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:earmark, "~> 1.2.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
