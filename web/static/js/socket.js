@@ -55,11 +55,12 @@ socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
 let channel           = socket.channel("job:markdown", {})
-let link              = document.querySelector("a#preview_link")
+let link              = document.querySelector("a#preview-link")
 let jobInput          = document.querySelector("form textarea#job_description")
-let messagesContainer = document.querySelector("#job_description_html")
+let messagesContainer = document.querySelector("#preview")
 
 link.addEventListener("click", event => {
+  console.log("puuuushed")
   channel.push("new_markdown", {body: jobInput.value})
 })
 
