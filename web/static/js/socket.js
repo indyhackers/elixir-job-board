@@ -54,7 +54,19 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel           = socket.channel("job:markdown", {})
+let link              = document.querySelector("a#preview_link")
+let jobInput          = document.querySelector("form textarea#job_description")
+let messagesContainer = document.querySelector("#job_description_html")
+
+link.addEventListener("click", event => {
+  channel.push("new_markdown", {body: jobInput.value})
+})
+
+channel.on("new_markdown", payload => {
+  messagesContainer.innerHTML = `${payload.body}`
+})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })

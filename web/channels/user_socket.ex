@@ -2,7 +2,7 @@ defmodule ElixirJobBoard.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", ElixirJobBoard.RoomChannel
+  channel "job:*", ElixirJobBoard.JobChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
