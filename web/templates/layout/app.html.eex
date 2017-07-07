@@ -15,7 +15,7 @@
     <div class="container">
       <header class="header clearfix">
         <nav role="navigation">
-          <ul class="nav nav-pills float-xs-right">
+          <ul class="nav nav-pills justify-content-end">
             <li class="nav-item"><%= link "Jobs", to: jobs_path(@conn, :index), class: "nav-link" %></li>
             <%= if logged_in?(@conn) do %>
               <li class="nav-item"><span class="nav-link"><%= current_user(@conn).email %></span></li>

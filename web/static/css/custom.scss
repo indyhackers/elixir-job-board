@@ -1,0 +1,17 @@
+form .description {
+  height: 400px;
+
+  textarea#job_description, #job-html {
+    height: 350px;
+  }
+
+  span#description-label {
+    display: inline-block;
+    margin-bottom: .5rem;
+  }
+
+  #job-html {
+    background-color: #efefef;
+    padding: 8px 12px;
+  }
+}
