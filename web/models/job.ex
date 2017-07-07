@@ -4,6 +4,7 @@ defmodule ElixirJobBoard.Job do
   schema "jobs" do
     field :title, :string
     field :description, :string
+    field :company_name, :string
     field :poster_email, :string
     field :contact_email, :string
     field :location, :string

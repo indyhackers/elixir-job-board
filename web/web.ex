@@ -53,6 +53,10 @@ defmodule ElixirJobBoard.Web do
       import ElixirJobBoard.ErrorHelpers
       import ElixirJobBoard.Gettext
       import ElixirJobBoard.Session, only: [current_user: 1, logged_in?: 1]
+
+      def render_shared(template, assigns \\ []) do
+        render(ElixirJobBoard.SharedView, template, assigns)
+      end
     end
   end
 

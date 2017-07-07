@@ -57,7 +57,7 @@ socket.connect()
 let channel           = socket.channel("job:markdown", {})
 let link              = document.querySelector("a#preview-link")
 let jobInput          = document.querySelector("form textarea#job_description")
-let messagesContainer = document.querySelector("#preview")
+let messagesContainer = document.querySelector("#job-html")
 
 link.addEventListener("click", event => {
   console.log("puuuushed")

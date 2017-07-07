@@ -1,6 +1,8 @@
 <div class="jumbotron">
   <h2>Job Posts</h2>
-  <%= for job <- @jobs do %>
-    <%= link job.title, to: jobs_path(@conn, :show, job) %>
-  <%= end %>
+  <ul>
+    <%= for job <- @jobs do %>
+      <li><%= link job.title, to: jobs_path(@conn, :show, job) %></li>
+    <%= end %>
+  </ul>
 </div>

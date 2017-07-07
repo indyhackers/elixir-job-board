@@ -1,39 +1,6 @@
 <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
-    <%= error_tag f, :title %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
-    <%= error_tag f, :description %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :poster_email, class: "control-label" %>
-    <%= text_input f, :poster_email, class: "form-control" %>
-    <%= error_tag f, :poster_email %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :contact_email, class: "control-label" %>
-    <%= text_input f, :contact_email, class: "form-control" %>
-    <%= error_tag f, :contact_email %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :location, class: "control-label" %>
-    <%= text_input f, :location, class: "form-control" %>
-    <%= error_tag f, :location %>
-  </div>
+  <%= render_shared "common_job_fields.html", f: f, changeset: @changeset %>
 
   <div class="form-group">
     <%= label f, :published_at, class: "control-label" %>

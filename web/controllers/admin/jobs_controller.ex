@@ -1,6 +1,7 @@
 defmodule ElixirJobBoard.Admin.JobsController do
   use ElixirJobBoard.Web, :controller
-  require IEx
+
+  plug ElixirJobBoard.Plugs.AuthenticateAdmin
 
   alias ElixirJobBoard.Job
 

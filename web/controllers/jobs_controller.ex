@@ -8,7 +8,10 @@ defmodule ElixirJobBoard.JobsController do
   alias ElixirJobBoard.Job
 
   def index(conn, _params) do
-    jobs = Repo.all(Job)
+    jobs = Job
+            |> where([job], job.published_at < ^Ecto.DateTime.utc)
+            |> order_by(:published_at)
+            |> Repo.all
     render conn, "index.html", jobs: jobs
   end
 
